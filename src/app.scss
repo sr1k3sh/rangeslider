@@ -1,0 +1,190 @@
+// Override default variables before the import
+$body-bg: #fff;
+
+// Import Bootstrap and its default variables
+@import '~bootstrap/scss/bootstrap.scss';
+@import "../node_modules/rfs/scss";
+@import './header/header.scss';
+
+.app{
+    position: relative;
+    background: #fff;
+}
+
+.slider{
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &__emoji{
+        background: #ffd05d;
+        border-radius: 50%;
+        width: 80px;
+        height: 80px;
+        position: absolute;
+        $self: &;
+        &--eye{
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #23221f;
+            position: absolute;
+            top:30%;
+        }
+        &--eye1{
+            left: 25%;
+        }
+        &--eye2{
+            right:25%;
+        }
+
+        &--eye-happy{
+            background-color: #ff4e4e;
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            transform: rotate(45deg) scale(0.25);
+            border-radius: 10px;
+            top:2px;
+
+            &.slider__emoji--eye1{
+                left: 0;
+            }
+            &.slider__emoji--eye2{
+                right:0;
+            }
+            
+            &::before, &::after {
+                content: "";
+                width: 50px;
+                height: 50px;
+                background-color: #ff4e4e;
+                position: absolute;
+                border-radius: 50%;
+            }
+            
+            &::before {
+                left: -25px;
+            }
+            
+            &::after {
+                top: -25px;
+            }
+        }
+
+        &--mouth{
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            bottom: 27%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 3px solid #23221f;
+            border-radius: 50%;
+            border-top-color: transparent;
+            border-left-color: transparent;
+            border-right-color: transparent;
+        }
+        &--mouth-neutral{
+            width: 40px;
+            border-radius: 0;
+        }
+        &--mouth-sad{
+            transform: scale(-1) translateX(50%) translateY(-80%);
+        }
+
+        &--mouth-love{
+            bottom: 13%;
+            width: 44px;
+            height: 26px;
+            margin: 0 auto;
+            border-radius: 0 0 70px 70px;
+            overflow: hidden;
+            background: #995710;
+            border: none;
+            &::after{
+                content: '';
+                width: 36px;
+                height: 22px;
+                background: #ff4735;
+                border-radius: 50%;
+                position: absolute;
+                bottom: -7px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+    }
+
+    &__wrapper{
+        position: relative;
+        width: 600px;
+        height: 200px;
+        top:50px;
+        left:50px;
+    }
+    &__point{
+        position: absolute;
+        background:red;
+        border-radius: 50%;
+        top:100px;
+        &--point2{
+            right:0;
+        }
+    }
+
+    &__line{
+        position: absolute;
+        border-radius: 10px;
+        &--line1{
+            width: 10px;
+            background: #99c3f5;
+        }
+        &--line2{
+            width: 5px;
+            background:#dfe3e7;
+        }
+    }
+
+    &__dragpoint{
+        width: 30px;
+        height:30px;
+        background:#70a5e5;
+        border:2px solid #fff;
+        box-shadow: 1px 1px 6px 1px #c7c7c7;
+        border-radius: 50%;
+        position: absolute;
+        cursor: pointer;
+    }
+
+    &__emoji-state{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__emoji-list{
+        text-decoration: none;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        padding: 0;
+        height: 48px;
+        overflow: hidden;
+    }
+
+    &__list{
+        list-style: none;
+        transform: translateY(0);
+        transition: transform 0.3s ease-in-out;
+        color: #99c3f5;
+        text-align: center;
+        font-size: 32px;
+        font-weight: bold;
+    }
+}
