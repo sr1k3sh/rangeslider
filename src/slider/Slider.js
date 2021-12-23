@@ -6,7 +6,7 @@ export default class Slider extends Component {
         super();
         this.state ={
             sliderState: 0,
-            emoji:'slider__emoji--mouth',
+            emoji:'slider__emoji--mouth  slider__emoji--mouth-sad',
             isHappy:false
         }
     }
@@ -149,14 +149,14 @@ export default class Slider extends Component {
         else if(percentage<40){
             this.setState({
                 sliderState:1,
-                emoji:"slider__emoji--mouth slider__emoji--mouth-sad",
+                emoji:"slider__emoji--mouth slider__emoji--mouth-neutral",
                 isHappy:false
             });
         }
         else if(percentage<60){
             this.setState({
                 sliderState:2,
-                emoji:"slider__emoji--mouth slider__emoji--mouth-neutral",
+                emoji:"slider__emoji--mouth",
                 isHappy:false
             });
         }
@@ -183,10 +183,10 @@ export default class Slider extends Component {
         posY = evt.clientY,
         divTop = divid.style.top,
         divLeft = divid.style.left,
-        eWi = parseInt(divid.style.width),
-        eHe = parseInt(divid.style.height),
-        cWi = parseInt(document.getElementById(container).style.width),
-        cHe = parseInt(document.getElementById(container).style.height);
+        eWi = parseInt(divid.clientWidth),
+        eHe = parseInt(divid.clientHeight),
+        cWi = parseInt(document.getElementById(container).clientWidth),
+        cHe = parseInt(document.getElementById(container).clientHeight);
         document.getElementById(container).style.cursor = "move";
         divTop = divTop.replace("px", "");
         divLeft = divLeft.replace("px", "");
