@@ -30,7 +30,7 @@ export default class Slider extends Component {
                     <div id="elem" className="slider__dragpoint"></div>
                 </div>
                 <div className='slider__emoji-state'>
-                    <h3>How much do you like our service?</h3>
+                    <h5>How much do you like our service?</h5>
                     <ul className='slider__emoji-list'>
                         <li className='slider__list list'>Poor</li>
                         <li className='slider__list list'>Average</li>
@@ -56,6 +56,9 @@ export default class Slider extends Component {
         let emoji = document.getElementById("emoji");
 
         elem.style.top = (point1.offsetTop - elem.clientHeight/2)+"px";
+        
+        emoji.style.left= elem.offsetLeft - 25 + "px";
+        emoji.style.top= elem.offsetTop - emoji.clientHeight*1.3 + "px";
 
         this.adjustLine(elem,point2,line2);
 

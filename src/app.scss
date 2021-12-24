@@ -10,6 +10,7 @@ $body-bg: #fff;
 .app{
     position: relative;
     background: #fff;
+    box-sizing: border-box;
 }
 
 .slider{
@@ -27,6 +28,7 @@ $body-bg: #fff;
         width: 80px;
         height: 80px;
         position: absolute;
+        box-shadow: inset -20px -13px 16px 2px #6c67292e;
         $self: &;
         &--eye{
             width: 10px;
@@ -157,7 +159,7 @@ $body-bg: #fff;
 
     &__wrapper{
         position: relative;
-        width: 600px;
+        width: 60vw;
         height: 200px;
     }
     &__point{
@@ -226,7 +228,7 @@ $body-bg: #fff;
 @mixin animation-mixin($name, $height, $translate) {
     @keyframes #{$name} {
         from {
-            transform: rotate(var(--deg)) translate(0px, $translate/2);
+            transform: rotate(var(--deg)) translate(0px, calc($translate/2));
             opacity: 1;
             top: calc(50% - ($height/2)); /* TAKIT: position at center, 25px is half the height */
             height: $height;
