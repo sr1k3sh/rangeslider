@@ -15,6 +15,10 @@ export default class Slider extends Component {
             <div className='slider'>
                 <div id="container" className="slider__wrapper">
                     <div className="slider__emoji" id="emoji">
+                        <div className={this.state.isHappy ? 'slider__emoji--background':'slider__emoji--none'} id="outline-cicle">
+                        </div>
+                        <div className={this.state.isHappy ? 'slider__emoji--background':'slider__emoji--none'} id="outline-max-cicle">
+                        </div>
                         <div className={this.state.isHappy ? 'slider__emoji--eye slider__emoji--eye-happy slider__emoji--eye1':'slider__emoji--eye slider__emoji--eye1'}></div>
                         <div className={this.state.isHappy ? 'slider__emoji--eye slider__emoji--eye-happy slider__emoji--eye2':'slider__emoji--eye slider__emoji--eye2'}></div>
                         <div className={this.state.emoji}></div>
@@ -68,7 +72,30 @@ export default class Slider extends Component {
             emoji.style.top= elem.offsetTop - emoji.clientHeight*1.3 + "px";
         });
 
-        
+        var numberOfElement = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30];
+        var initialRender = numberOfElement.slice(0, 17);
+
+        var longerRender = numberOfElement.slice(0, 8);
+
+        var angles = this.renderAngle(initialRender);
+
+        var langles = this.LrenderAngle(longerRender);
+
+        let html = '';
+        angles.forEach(function(item) {
+            // TAKIT: Added use of a CSS var here, so all the CSS is in the CSS!
+            // html += '<div class="shapes' + '" style="--deg:' + item + 'deg;"></div>';
+            html += `<div class="shapes" style="--deg:${item}deg;"></div>`
+        });
+
+        let lhtml = '';
+        langles.forEach(function(item){
+            lhtml += `<div class="shapes shapes--long" style="--deg:${item+30}deg;"></div>`
+        });
+
+        document.getElementById("outline-cicle").innerHTML = html;
+
+        document.getElementById("outline-max-cicle").innerHTML = lhtml;
     }
 
     componentDidUpdate(){
@@ -211,5 +238,21 @@ export default class Slider extends Component {
         document.createElement("script");
         document.getElementById(container).style.cursor = "default";
         document.onmousemove = function () {};
+    }
+
+    renderAngle(data) {
+        var angles = [120];
+        data.forEach(function(item, index) {
+          angles.push((angles[index] + 20) % 360);      // TAKIT: Added modulo
+        })
+        return angles;
+    }
+
+    LrenderAngle(data) {
+        var angles = [120];
+        data.forEach(function(item, index) {
+          angles.push((angles[index] + 40) % 360);      // TAKIT: Added modulo
+        })
+        return angles;
     }
 }

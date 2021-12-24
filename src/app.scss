@@ -1,4 +1,5 @@
 // Override default variables before the import
+@use "sass:math";
 $body-bg: #fff;
 
 // Import Bootstrap and its default variables
@@ -118,6 +119,40 @@ $body-bg: #fff;
                 transform: translateX(-50%);
             }
         }
+
+        &--none{
+            position:absolute;
+            width: 100%;
+            height: 100%;
+        }
+    
+        &--background{
+            width: 80px;
+            height:80px;
+            position: absolute;
+            #outline-max-cicle{
+                transform: rotate(30deg);
+            }
+            .shapes {
+                position: absolute;
+                top: calc(50% - 8px); /* TAKIT: position at center, 25px is half the height */
+                left: calc(50% - 3px); /* TAKIT: position at center, 3px is half the width */
+                width: 6px;
+                height: 16px;
+                border-radius: 32px;
+                background: #99c3f5;
+                transform: rotate(var(--deg)) translate(0px, 50px);
+                animation: translatePoint1 0.5s forwards;
+                &--long{
+                    top: calc(50% - 4px);
+                    height:8px;
+                    opacity: 0;
+                    transform: rotate(var(--deg)) translate(0px, 60px);
+                    animation: translatePoint2 0.7s 0.1s forwards;
+                }
+            }
+        }
+
     }
 
     &__wrapper{
@@ -187,3 +222,23 @@ $body-bg: #fff;
         font-weight: bold;
     }
 }
+
+@mixin animation-mixin($name, $height, $translate) {
+    @keyframes #{$name} {
+        from {
+            transform: rotate(var(--deg)) translate(0px, $translate/2);
+            opacity: 1;
+            top: calc(50% - ($height/2)); /* TAKIT: position at center, 25px is half the height */
+            height: $height;
+        }
+        to {
+            transform: rotate(var(--deg)) translate(0px, $translate);    
+            opacity: 0;
+            top: calc(50% - 2px); /* TAKIT: position at center, 25px is half the height */
+            height: 4px;
+        }
+    }
+}  
+
+@include animation-mixin(translatePoint1,16px,100px);
+@include animation-mixin(translatePoint2,32px,140px);
